@@ -20,7 +20,7 @@ class headers:
             ret += h+": "+str(self.headers_dict[h])
             ret += "\r\n"
         return ret
-class response:
+class request:
     def __init__(self):
         self.status_line = []
         self.headers_obj = headers()
@@ -28,8 +28,8 @@ class response:
     def text(self):
         return " ".join(self.status_line)+"\r\n"+self.headers_obj.as_str()+"\r\n"+self.body
     @staticmethod
-    def build(query):
-        r = response()
+    def build_response(query):
+        r = request()
 
         r.status_line.append("HTTP/1.1")
         # check if query is heckin cute % valid/returnable

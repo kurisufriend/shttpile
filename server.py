@@ -7,7 +7,7 @@ while True:
     c, c_add = s.accept()
     print(c_add)
     print(c.recv(1024).decode("ascii"))
-    r = response.response.build("body.html")
+    r = response.request.build_response("body.html")
     c.sendall(r.text().encode("ascii"))
     c.close()
 s.close()

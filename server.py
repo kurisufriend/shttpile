@@ -2,8 +2,17 @@ import socket
 import response
 import sys
 import os
+_PORT = 1337
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(("0.0.0.0", 1337))
+bound = False
+while not(bound):
+    try:
+        s.bind(("0.0.0.0", _PORT))
+        bound = True
+        print("bound to port", _PORT)
+    except OSError:
+        _PORT += 1
+        print("encountered error, trying port", _PORT)
 s.listen()
 while True:
     c, c_add = s.accept()
